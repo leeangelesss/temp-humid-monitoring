@@ -47,7 +47,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   const strokeDashoffset = circumference * (1 - percentage);
 
   return (
-    <div className="w-full sm:max-w-[260px] md:max-w-[300px] lg:max-w-[340px] px-4 sm:px-6 py-8 bg-gray-800 rounded-xl shadow-lg text-white flex flex-col items-center">
+    <div className="w-full px-4 sm:px-6 py-8 bg-gray-800 rounded-xl shadow-lg text-white flex flex-col items-center">
       {/* Icon and label */}
       <div className="flex items-center gap-4 mb-4">
         {icon}
