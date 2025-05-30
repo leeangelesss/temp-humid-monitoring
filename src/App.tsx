@@ -11,7 +11,7 @@ function App() {
       </div>
 
       {/* Right side container for Progress Bars */}
-      <div className="p-6 rounded-2xl shadow-lg max-w-md w-full flex flex-col space-y-6">
+      <div className="p-6 rounded-2xl max-w-md w-full flex flex-col space-y-6">
         <ProgressBar type="temperature" value={28} max={50} unit="°C" />
         <ProgressBar type="humidity" value={45} max={100} unit="%" />
       </div>
