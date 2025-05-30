@@ -10,39 +10,15 @@ interface ProgressBarProps {
 }
 
 const temperatureLevels = [
-  {
-    label: "Cold",
-    condition: (v: number) => v < 20,
-    color: "text-blue-500",
-  },
-  {
-    label: "Normal",
-    condition: (v: number) => v >= 20 && v < 26,
-    color: "text-green-500",
-  },
-  {
-    label: "Hot",
-    condition: (v: number) => v >= 26,
-    color: "text-red-500",
-  },
+  { label: "Cold", condition: (v: number) => v < 20, color: "text-blue-500" },
+  { label: "Normal", condition: (v: number) => v >= 20 && v < 26, color: "text-green-500" },
+  { label: "Hot", condition: (v: number) => v >= 26, color: "text-red-500" },
 ];
 
 const humidityLevels = [
-  {
-    label: "Dry",
-    condition: (v: number) => v < 30,
-    color: "text-red-500",
-  },
-  {
-    label: "Comfort",
-    condition: (v: number) => v >= 30 && v < 60,
-    color: "text-green-500",
-  },
-  {
-    label: "Wet",
-    condition: (v: number) => v >= 60,
-    color: "text-blue-500",
-  },
+  { label: "Dry", condition: (v: number) => v < 30, color: "text-red-500" },
+  { label: "Comfort", condition: (v: number) => v >= 30 && v < 60, color: "text-green-500" },
+  { label: "Wet", condition: (v: number) => v >= 60, color: "text-blue-500" },
 ];
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
@@ -55,48 +31,39 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   const percentage = Math.min(Math.max((value - min) / (max - min), 0), 1);
 
   const levels = type === "temperature" ? temperatureLevels : humidityLevels;
-
   const currentLevel = levels.find((level) => level.condition(value)) || levels[0];
 
   const icon =
     type === "temperature" ? (
-      <FaThermometerHalf className="text-blue-500 text-4xl" />
+      <FaThermometerHalf className="text-blue-500 text-2xl" />
     ) : (
-      <FaTint className="text-blue-500 text-4xl" />
+      <FaTint className="text-blue-500 text-2xl" />
     );
 
-  // Bigger size and stroke width
   const size = 240;
   const strokeWidth = 24;
   const radius = (size - strokeWidth) / 2;
   const circumference = Math.PI * radius;
-
   const strokeDashoffset = circumference * (1 - percentage);
 
   return (
-    <div className="w-full max-w-md py-8 px-2 bg-gray-800 rounded-xl shadow-lg text-white flex flex-col items-center">
-      {/* Icon and type label */}
-      <div className="flex items-center gap-6 mb-6">
-        <div>{icon}</div>
-        <div className="text-center text-gradient">
-          <div className="font-bold text-2xl capitalize">{type}</div>
-        </div>
+    <div className="w-full max-w-[300px] px-6 py-8 bg-gray-800 rounded-xl shadow-lg text-white flex flex-col items-center">
+      {/* Icon and label */}
+      <div className="flex items-center gap-4 mb-4">
+        {icon}
+        <div className="text-xl font-bold capitalize text-gradient">{type}</div>
       </div>
 
-      {/* Progress bar container with relative positioning */}
-      <div className="relative" style={{ width: size, height: size / 2 }}>
+      {/* Progress bar container */}
+      <div className="relative w-full aspect-[2/1]">
         <svg
-          width={size}
-          height={size / 2}
           viewBox={`0 0 ${size} ${size / 2}`}
-          className="block"
+          preserveAspectRatio="xMidYMid meet"
+          className="w-full h-full"
         >
           {/* Background track */}
           <path
-            d={`
-              M ${strokeWidth / 2} ${size / 2}
-              A ${radius} ${radius} 0 0 1 ${size - strokeWidth / 2} ${size / 2}
-            `}
+            d={`M ${strokeWidth / 2} ${size / 2} A ${radius} ${radius} 0 0 1 ${size - strokeWidth / 2} ${size / 2}`}
             fill="none"
             stroke="#374151"
             strokeWidth={strokeWidth}
@@ -104,10 +71,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
           />
           {/* Progress path */}
           <path
-            d={`
-              M ${strokeWidth / 2} ${size / 2}
-              A ${radius} ${radius} 0 0 1 ${size - strokeWidth / 2} ${size / 2}
-            `}
+            d={`M ${strokeWidth / 2} ${size / 2} A ${radius} ${radius} 0 0 1 ${size - strokeWidth / 2} ${size / 2}`}
             fill="none"
             stroke="currentColor"
             strokeWidth={strokeWidth}
@@ -119,26 +83,24 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
           />
         </svg>
 
-        {/* Centered value and label inside the semi-circle */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-          <div className="text-3xl text-gradient font-bold mt-20">
+        {/* Value and label centered */}
+        <div className="absolute left-1/2 top-2/3 transform -translate-x-1/2 -translate-y-1/2 text-center">
+          <div className="text-3xl font-bold text-gradient">
             {value}
             {unit}
           </div>
-          <div className="text-gradient text-lg">{currentLevel.label}</div>
+          <div className="text-gradient text-sm">{currentLevel.label}</div>
         </div>
-      </div>
 
-      {/* Min and Max values */}
-      <div className="w-full flex justify-between mt-4 px-16 text-gradient font-semibold text-base">
-        <span>
+        {/* Fixed min and max under the ends */}
+        <div className="absolute py-2 bottom-[-1] left-0 transform -translate-x-1/2 text-sm text-gradient font-semibold">
           {min}
           {unit}
-        </span>
-        <span>
+        </div>
+        <div className="absolute py-2 bottom-[-1] right-0 transform translate-x-1/2 text-sm text-gradient font-semibold">
           {max}
           {unit}
-        </span>
+        </div>
       </div>
     </div>
   );

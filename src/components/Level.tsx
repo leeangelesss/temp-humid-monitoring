@@ -45,10 +45,10 @@ const temperatureLevels = [
 
 const Level: React.FC = () => {
   return (
-    <div className="p-6 bg-gray-800 rounded-2xl shadow-lg max-w-sm mx-auto text-white">
+    <div className="p-5 bg-gray-800 rounded-2xl shadow-lg max-w-sm mx-auto text-white">
       {/* Temperature Section */}
       <div className="mb-10">
-        <h2 className="text-2xl font-bold mb-4 text-gradient border-b border-gray-700 pb-2">
+        <h2 className="text-xl font-bold mb-4 text-gradient border-b border-gray-700 pb-2">
           Temperature Levels
         </h2>
         {temperatureLevels.map((level, index) => (
@@ -59,9 +59,9 @@ const Level: React.FC = () => {
               {level.icon}
             </div>
             <div className="flex flex-col items-start text-left">
-              <span className="text-lg font-bold">{level.label}</span>
+              <span className="text-md font-bold">{level.label}</span>
               {level.conditions.map((condition, i) => (
-                <span key={i} className="text-sm font-semibold">{condition}</span>
+                <span key={i} className="text-xs font-semibold">{condition}</span>
               ))}
             </div>
           </div>
@@ -69,7 +69,7 @@ const Level: React.FC = () => {
       </div>
       {/* Humidity Section */}
       <div className="">
-        <h2 className="text-2xl font-bold mb-4 border-b border-gray-700 pb-2 text-gradient">
+        <h2 className="text-xl mb-4 font-bold border-b border-gray-700 pb-2 text-gradient">
           Humidity Levels
         </h2>
         {humidityLevels.map((level, index) => (
@@ -80,9 +80,9 @@ const Level: React.FC = () => {
               {level.icon}
             </div>
             <div className="flex flex-col items-start text-left">
-              <span className="text-lg font-bold">{level.label}</span>
+              <span className="text-md font-bold">{level.label}</span>
               {level.conditions.map((condition, i) => (
-                <span key={i} className="text-sm font-semibold">{condition}</span>
+                <span key={i} className="text-xs font-semibold">{condition}</span>
               ))}
             </div>
           </div>
