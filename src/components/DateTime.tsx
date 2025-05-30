@@ -15,7 +15,7 @@ const DateTime: React.FC = () => {
 
   return (
     <div className="bg-gray-800 text-center p-4 rounded-lg">
-      <div className="text-xs sm:text-sm md:text-base text-gradient mb-2">
+      <div className="text-xs sm:text-sm md:text-base text-gradient">
         {dateTime.format('dddd, MMMM D, YYYY')}
       </div>
       <div className="text-2xl sm:text-2xl md:text-3xl font-bold text-gradient">

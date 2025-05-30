@@ -47,7 +47,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   const strokeDashoffset = circumference * (1 - percentage);
 
   return (
-    <div className="w-full max-w-[300px] px-6 py-8 bg-gray-800 rounded-xl shadow-lg text-white flex flex-col items-center">
+    <div className="w-full sm:max-w-[260px] md:max-w-[300px] lg:max-w-[340px] px-4 sm:px-6 py-8 bg-gray-800 rounded-xl shadow-lg text-white flex flex-col items-center">
       {/* Icon and label */}
       <div className="flex items-center gap-4 mb-4">
         {icon}
@@ -92,15 +92,17 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
           <div className="text-gradient text-sm">{currentLevel.label}</div>
         </div>
 
-        {/* Fixed min and max under the ends */}
-        <div className="absolute py-2 bottom-[-1] left-0 transform -translate-x-1/2 text-sm text-gradient font-semibold">
+        {/* Min and Max labels */}
+        {/* Min and Max labels */}
+        <div className="absolute -bottom-6 left-0 text-sm text-gradient font-semibold">
           {min}
           {unit}
         </div>
-        <div className="absolute py-2 bottom-[-1] right-0 transform translate-x-1/2 text-sm text-gradient font-semibold">
+        <div className="absolute -bottom-6 right-0 text-sm text-gradient font-semibold">
           {max}
           {unit}
         </div>
+
       </div>
     </div>
   );

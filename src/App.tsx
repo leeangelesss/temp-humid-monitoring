@@ -11,19 +11,19 @@ function App() {
       <div className="flex flex-col md:flex-row gap-8 w-full max-w-7xl items-stretch">
         
         {/* InfoCard Section */}
-        <div className="shadow-md w-full md:w-1/3">
+        <div className="w-full md:w-1/3">
           <InfoCard />
         </div>
 
         {/* Progress Bars */}
-        <div className="shadow-md md:w-1/3 flex flex-col space-y-6">
+        <div className="w-full md:w-1/3 flex justify-center flex-col space-y-3">
           <DateTime />
           <ProgressBar type="temperature" value={28} max={50} unit="°C" />
           <ProgressBar type="humidity" value={45} max={100} unit="%" />
         </div>
 
         {/* Level Section */}
-        <div className="shadow-md w-full md:w-1/3">
+        <div className="w-full md:w-1/3">
           <Level />
         </div>
         
