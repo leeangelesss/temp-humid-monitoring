@@ -1,34 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Level from './components/Level'
+import ProgressBar from './components/ProgressBar'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      {/* Left side container for Levels */}
+      <div className="p-6 rounded-2xl max-w-sm w-full">
+        <Level />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      {/* Right side container for Progress Bars */}
+      <div className="p-6 rounded-2xl shadow-lg max-w-md w-full flex flex-col space-y-6">
+        <ProgressBar type="temperature" value={28} max={50} unit="°C" />
+        <ProgressBar type="humidity" value={45} max={100} unit="%" />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
